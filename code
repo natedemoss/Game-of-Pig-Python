@@ -1,0 +1,30 @@
+# Write your code here
+import random
+def pig():
+    score = 0
+    turn = 1
+    round_score = 0 
+    while score < 100:
+        print("Turn " + str(turn))
+        print("This round you have: " + str(round_score))
+        print("Overall score " + str(score))
+        choice = input ("Would you like to roll or bank? " )
+        if choice.lower() == "roll":
+            roll = random.randint(1, 6)
+            print()
+            print("Your rolled a " + str(roll))
+            if roll == 1:
+                round_score = 0 
+                print("You rolled a 1! You get a zero for this round!")
+                turn += 1
+            else:
+                round_score += roll
+        elif choice.lower() == "bank":
+            score += round_score
+            round_score = 0
+            turn += 1
+        else:
+            continue
+    return "You won in " + str(turn) + " !"
+      
+print(pig())
