@@ -1,0 +1,62 @@
+import random
+def pig():
+    score = 0
+    computer_score = 0
+    turn = 1
+    while score < 100 and computer_score < 100:
+        print("Turn " + str(turn))
+        round_score = 0
+        
+        while True:
+            print("Your Current Score:", score)
+            print("This round you have:", round_score)
+            choice =  input("Would you like to roll or bank? ").lower()
+            
+            if choice == "roll":
+                roll = random.randint(1, 6)
+                print("You rolled a", roll)
+                if roll ==1:
+                    print("You rolled a 1! You get a zero for this round")
+                    round_score = 0
+                    break
+                else:
+                    round_score += roll
+            elif choice == "bank":
+                score += round_score
+                print("You banked", round_score, "points. Your total score is now", score)
+                round_score = 0
+                break
+        if score >= 100:
+            print("Congrats! You won in", turn, "turns!")
+            break
+        print()
+        print("Computer turn")
+        computer_round_score = 0
+        
+        while computer_round_score <= 15:
+            computer_roll = random.randint(1, 6)
+            print("The computer rolled a", computer_roll)
+            if computer_roll == 1:
+                print("The computer rolled a 1! End of turn.")
+                computer_round_score = 0
+                break
+            else:
+                computer_round_score += computer_roll
+                print("This round the computer has:", computer_round_score)
+                
+            if computer_round_score > 15:
+                print("The computer chooses to bank.")
+                
+                break
+        
+        computer_score += computer_round_score
+        print("The computer banked", computer_round_score, "points. Its total score is now:", computer_score)
+        print()
+        if computer_score >=100:
+            print("Good try. The Computer won in" + str(turn) + "turns.")
+            break
+        
+        turn += 1
+    
+    
+pig()
